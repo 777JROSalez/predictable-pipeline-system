@@ -1,0 +1,84 @@
+.problem {
+  background-color: var(--color-canvas);
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
+
+/* Header block */
+.headerBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  max-width: 760px;
+}
+
+.headline {
+  margin-top: var(--space-3);
+}
+
+.intro {
+  margin-top: var(--space-6);
+  font-size: var(--text-md);
+  color: var(--color-steel);
+  max-width: 68ch;
+}
+
+/* Pain card grid: 2-col mobile → 3-col desktop */
+.painGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--space-4);
+}
+
+@media (min-width: 1024px) {
+  .painGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+  }
+}
+
+/* Pain card */
+.painCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  background-color: #FFFFFF;
+}
+
+.painCardMark {
+  width: 6px;
+  height: 6px;
+  background-color: var(--color-oxblood);
+  flex-shrink: 0;
+  border-radius: 1px;
+}
+
+.painCardTitle {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--color-charcoal);
+  line-height: 1.3;
+}
+
+.painCardDescription {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--color-smoke);
+  line-height: 1.6;
+}
+
+/* Closing line */
+.closingLine {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: var(--text-lg);
+  color: var(--color-steel);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--color-rule);
+  max-width: 68ch;
+}

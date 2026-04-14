@@ -1,0 +1,79 @@
+.overview {
+  /* Inherits --color-canvas-soft from .section--alt */
+}
+
+.header {
+  margin-bottom: var(--space-12);
+  max-width: 680px;
+}
+
+.headline {
+  margin-top: var(--space-3);
+}
+
+/* Difference grid — 1-col → 2-col → 3-col */
+.differenceGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+}
+
+@media (min-width: 768px) {
+  .differenceGrid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: var(--space-6);
+  }
+}
+
+@media (min-width: 1024px) {
+  .differenceGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+  }
+}
+
+/* Difference card */
+.differenceCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  background-color: #FFFFFF;
+}
+
+/* Step number and copper rule */
+.stepHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.stepNumber {
+  font-family: var(--font-mono);
+  font-size: var(--text-base);
+  font-weight: 500;
+  color: var(--color-copper);
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.copperRule {
+  flex: 1;
+  height: 1px;
+  background-color: var(--color-copper);
+  opacity: 0.4;
+}
+
+.stepTitle {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--color-charcoal);
+  line-height: 1.35;
+}
+
+.stepDescription {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--color-steel);
+  line-height: 1.7;
+}

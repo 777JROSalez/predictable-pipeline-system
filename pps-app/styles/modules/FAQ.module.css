@@ -1,0 +1,108 @@
+/* FAQ.module.css
+   Accordion-style Q&A objection handling section
+   ------------------------------------------------ */
+
+.faq {
+  /* Inherits .section */
+}
+
+.header {
+  margin-bottom: var(--space-12);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+}
+
+@media (min-width: 1024px) {
+  .header {
+    grid-template-columns: 2fr 3fr;
+    align-items: start;
+    gap: var(--space-16);
+  }
+}
+
+.headline {
+  margin-top: var(--space-3);
+  max-width: 20ch;
+}
+
+/* ------- FAQ list ------- */
+.faqList {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--color-rule);
+}
+
+/* FAQ item */
+.faqItem {
+  border-bottom: 1px solid var(--color-rule);
+  transition: background-color 200ms ease;
+}
+
+.faqItemOpen {
+  background-color: var(--color-canvas-soft);
+}
+
+/* Question button */
+.faqQuestion {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
+  padding: var(--space-6) 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: color 200ms ease;
+}
+
+.faqQuestion:hover .questionText {
+  color: var(--color-oxblood);
+}
+
+.questionText {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--color-charcoal);
+  line-height: 1.4;
+  transition: color 200ms ease;
+}
+
+.faqChevron {
+  font-family: var(--font-mono);
+  font-size: var(--text-lg);
+  color: var(--color-copper);
+  flex-shrink: 0;
+  line-height: 1;
+  font-weight: 400;
+  transition: transform 200ms ease;
+}
+
+.faqChevronOpen {
+  color: var(--color-oxblood);
+}
+
+/* Answer panel */
+.faqAnswer {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 300ms ease;
+  overflow: hidden;
+}
+
+.faqAnswerOpen {
+  grid-template-rows: 1fr;
+}
+
+.answerText {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--color-steel);
+  line-height: 1.7;
+  padding-bottom: var(--space-6);
+  max-width: 70ch;
+  overflow: hidden;
+}

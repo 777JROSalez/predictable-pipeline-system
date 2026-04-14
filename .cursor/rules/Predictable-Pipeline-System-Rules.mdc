@@ -1,0 +1,26 @@
+---
+alwaysApply: true
+---
+
+You are working inside a production-grade system called the Predictable Pipeline.
+
+Your job is to build clean, scalable, and reliable code.
+
+Strict Rules:
+
+1. Do NOT break existing functionality.
+2. Always analyze the current file and related files before making changes.
+3. Keep code modular and reusable.
+4. Follow existing project structure and naming conventions.
+5. Do NOT introduce unnecessary complexity.
+6. When unsure, ask before making large structural changes.
+7. Always prefer clarity over cleverness.
+8. Ensure all features are production-ready, not prototypes.
+9. Avoid hardcoding values unless explicitly required.
+10. When editing, explain what you changed and why.
+
+Behavior:
+
+- Think step-by-step before coding.
+- Prioritize system stability over speed.
+- Treat this like a real client project, not a demo.

@@ -1,0 +1,202 @@
+/* SystemMap.module.css
+   Dark command panel system map — DESIGN.md §10.1
+   ------------------------------------------------- */
+
+.mapContainer {
+  background-color: var(--color-panel-bg);
+  border: 1px solid var(--color-panel-border);
+  border-radius: 4px;
+  padding: var(--space-6);
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+/* Header bar */
+.mapHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-6);
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--color-panel-border);
+}
+
+.mapLabel {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  color: var(--color-panel-label);
+  letter-spacing: 0.08em;
+}
+
+.liveBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  color: var(--color-mint);
+  letter-spacing: 0.08em;
+}
+
+.liveDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--color-mint);
+  animation: mintPulse 2s ease-in-out infinite;
+}
+
+@keyframes mintPulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.35; }
+}
+
+/* Pipeline — horizontal scroll wrapper */
+.pipeline {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  min-width: 580px;
+}
+
+/* Node group: node box + meta below */
+.nodeGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  min-width: 96px;
+}
+
+/* Node box */
+.node {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-1);
+  border: 1px solid var(--color-panel-border);
+  border-radius: 3px;
+  padding: var(--space-3) var(--space-4);
+  width: 100%;
+  background-color: transparent;
+  transition: border-color 200ms ease;
+}
+
+.node:hover {
+  border-color: var(--color-copper);
+}
+
+/* Active node — mint border + pulse glow */
+.nodeActive {
+  border-color: var(--color-mint);
+  box-shadow: 0 0 0 3px var(--color-mint-pulse);
+}
+
+.nodeId {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  color: var(--color-panel-label);
+  letter-spacing: 0.08em;
+}
+
+.nodeLabel {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  color: var(--color-panel-text);
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+
+.nodeDesc {
+  font-family: var(--font-body);
+  font-size: 0.625rem; /* 10px — below --text-xs for diagram density */
+  color: var(--color-panel-label);
+  white-space: nowrap;
+}
+
+/* Node meta — conversion rate below node */
+.nodeMeta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nodeCount {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  color: var(--color-copper-muted);
+}
+
+.nodeCountActive {
+  color: var(--color-mint);
+}
+
+/* Connector between nodes */
+.connector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  padding: 0 var(--space-2);
+  flex-shrink: 0;
+  margin-top: 24px; /* Aligns with node midpoint */
+}
+
+.connectorArrow {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-copper);
+  letter-spacing: -0.04em;
+  white-space: nowrap;
+}
+
+.connectorLabel {
+  font-family: var(--font-body);
+  font-size: 0.625rem;
+  color: var(--color-panel-label);
+  white-space: nowrap;
+}
+
+/* Status bar */
+.statusBar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-top: var(--space-6);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-panel-border);
+}
+
+.statusItem {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-panel-label);
+}
+
+.statusDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: var(--color-mint);
+}
+
+.statusDivider {
+  color: var(--color-panel-border);
+}
+
+.statusTimestamp {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-panel-label);
+  margin-left: auto;
+}

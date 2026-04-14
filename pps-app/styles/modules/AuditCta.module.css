@@ -1,0 +1,221 @@
+/* ---- Process Section (canvas background) ---- */
+
+.process {
+  background-color: var(--color-canvas);
+}
+
+.processHeader {
+  margin-bottom: var(--space-12);
+  max-width: 680px;
+}
+
+.processHeadline {
+  margin-top: var(--space-3);
+}
+
+/* Process steps — horizontal with connectors */
+.processSteps {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin-bottom: var(--space-10);
+}
+
+.stepGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--space-4);
+}
+
+.processCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  background-color: #FFFFFF;
+  flex: 1;
+}
+
+.stepHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.stepNumber {
+  font-family: var(--font-mono);
+  font-size: var(--text-base);
+  font-weight: 500;
+  color: var(--color-copper);
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.copperRule {
+  flex: 1;
+  height: 1px;
+  background-color: var(--color-copper);
+  opacity: 0.4;
+}
+
+.stepTitle {
+  font-family: var(--font-body);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--color-charcoal);
+  line-height: 1.3;
+}
+
+.stepDescription {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--color-steel);
+  line-height: 1.7;
+}
+
+.connector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-2) 0;
+}
+
+.connectorArrow {
+  font-family: var(--font-mono);
+  font-size: var(--text-xl);
+  color: var(--color-copper);
+  line-height: 1;
+  transform: rotate(90deg);
+}
+
+.processClose {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--color-smoke);
+  letter-spacing: 0.04em;
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--color-rule);
+}
+
+/* Desktop: horizontal 3-step layout */
+@media (min-width: 1024px) {
+  .processSteps {
+    flex-direction: row;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .stepGroup {
+    flex-direction: row;
+    align-items: center;
+    flex: 1;
+    gap: 0;
+  }
+
+  .processCard {
+    min-height: 240px;
+  }
+
+  .connector {
+    padding: 0 var(--space-2);
+    flex-shrink: 0;
+  }
+
+  .connectorArrow {
+    transform: rotate(0deg);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .processSteps {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: var(--space-6);
+  }
+
+  .stepGroup {
+    flex-direction: column;
+  }
+
+  .connector {
+    display: none;
+  }
+}
+
+/* ---- Final CTA Section (dark panel) ---- */
+
+.auditCta {
+  /* Inherits background-color: --color-charcoal from .section--dark */
+}
+
+.inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-12);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.headline {
+  margin-top: var(--space-3);
+  max-width: 24ch;
+  color: var(--color-canvas);
+}
+
+/* Right action column */
+.action {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.description {
+  color: var(--color-panel-text);
+  max-width: 60ch;
+}
+
+/* Deliverables */
+.deliverables {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.deliverableList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.deliverableItem {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--color-panel-text);
+  line-height: 1.5;
+}
+
+.deliverableMark {
+  font-family: var(--font-mono);
+  color: var(--color-copper);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* Desktop: 2-column layout */
+@media (min-width: 1024px) {
+  .inner {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: var(--space-24);
+    align-items: start;
+  }
+}
