@@ -27,9 +27,6 @@ export const metadata: Metadata = {
     description:
       'Client acquisition infrastructure for service businesses. Trust, conversion, and pipeline — installed.',
   },
-  other: {
-    'facebook-domain-verification': '25chd9zvo24fmy52jfvq8buvd8al1m',
-  },
 };
 
 export default function RootLayout({
@@ -40,10 +37,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* 🔥 FORCE META TAG (THIS IS THE IMPORTANT PART) */}
         <meta
           name="facebook-domain-verification"
           content="25chd9zvo24fmy52jfvq8buvd8al1m"
         />
+
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
@@ -55,10 +54,12 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
+
       <body>
         <a href="#main-content" className="skip-nav">
           Skip to main content
         </a>
+
         {children}
       </body>
     </html>
