@@ -24,6 +24,9 @@ export const metadata: Metadata = {
     description:
       'Client acquisition infrastructure for service businesses. Trust, conversion, and pipeline — installed.',
   },
+  other: {
+    'facebook-domain-verification': '25chd9zvo24fmy52jfvq8buvd8al1m',
+  },
 };
 
 export default function RootLayout({
