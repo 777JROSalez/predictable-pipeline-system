@@ -1,4 +1,7 @@
 import type { Metadata } from 'next';
+import Script from 'next/script';
+import { Suspense } from 'react';
+import MetaPixelPageView from '@/components/MetaPixelPageView';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -42,7 +45,9 @@ export default function RootLayout({
           content="25chd9zvo24fmy52jfvq8buvd8al1m"
         />
 
-        <script
+        <Script
+          id="meta-pixel-base"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
               !function(f,b,e,v,n,t,s)
@@ -53,8 +58,8 @@ export default function RootLayout({
               t.src=v;s=b.getElementsByTagName(e)[0];
               s.parentNode.insertBefore(t,s)}(window, document,'script',
               'https://connect.facebook.net/en_US/fbevents.js');
+
               fbq('init', '2140288869880172');
-              fbq('track', 'PageView');
             `,
           }}
         />
@@ -81,6 +86,10 @@ export default function RootLayout({
             alt=""
           />
         </noscript>
+
+        <Suspense fallback={null}>
+          <MetaPixelPageView />
+        </Suspense>
 
         <a href="#main-content" className="skip-nav">
           Skip to main content
