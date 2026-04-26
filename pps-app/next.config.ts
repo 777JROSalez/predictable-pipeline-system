@@ -12,11 +12,11 @@ import type { NextConfig } from 'next';
 // If you later add analytics (GA4, Plausible, etc.) extend connect-src / script-src.
 const CSP = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
+  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://connect.facebook.net",
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
   "font-src 'self' https://fonts.gstatic.com",
-  "img-src 'self' data: blob:",
-  "connect-src 'self'",
+  "img-src 'self' data: blob: https://www.facebook.com https://facebook.com",
+  "connect-src 'self' https://www.facebook.com https://facebook.com",
   "frame-src 'none'",
   "frame-ancestors 'none'",
   "object-src 'none'",
