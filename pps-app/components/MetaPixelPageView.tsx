@@ -14,9 +14,21 @@ export default function MetaPixelPageView() {
   const searchParams = useSearchParams();
 
   useEffect(() => {
-    if (typeof window !== 'undefined' && window.fbq) {
-      window.fbq('track', 'PageView');
-    }
+    let tries = 0;
+
+    const interval = setInterval(() => {
+      if (typeof window !== 'undefined' && window.fbq) {
+        window.fbq('track', 'PageView');
+        clearInterval(interval);
+      }
+
+      tries++;
+      if (tries > 10) {
+        clearInterval(interval);
+      }
+    }, 300);
+
+    return () => clearInterval(interval);
   }, [pathname, searchParams]);
 
   return null;
