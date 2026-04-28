@@ -3,6 +3,7 @@
 import { useState, useEffect, FormEvent } from 'react';
 import styles from '@/styles/modules/AssessmentForm.module.css';
 import { CALENDLY_DIAGNOSTIC_URL } from '@/lib/config';
+import { trackMetaLead } from '@/lib/metaPixel';
 
 declare global {
   interface Window {
@@ -114,19 +115,31 @@ export default function AssessmentForm({ idPrefix = 'af' }: AssessmentFormProps)
   // Auto-reset the form a few seconds after the user opens Calendly
   useEffect(() => {
     if (!bookingClicked) return;
+
     const timer = setTimeout(() => {
-      try { sessionStorage.removeItem(SUBMITTED_KEY); } catch { /* */ }
+      try {
+        sessionStorage.removeItem(SUBMITTED_KEY);
+      } catch {
+        // sessionStorage unavailable — proceed without persisting
+      }
+
       setFields(INITIAL_FIELDS);
       setFieldErrors({});
       setFormError('');
       setBookingClicked(false);
       setStatus('idle');
     }, POST_BOOKING_RESET_MS);
+
     return () => clearTimeout(timer);
   }, [bookingClicked]);
 
   function resetForm() {
-    try { sessionStorage.removeItem(SUBMITTED_KEY); } catch { /* */ }
+    try {
+      sessionStorage.removeItem(SUBMITTED_KEY);
+    } catch {
+      // sessionStorage unavailable — proceed without persisting
+    }
+
     setFields(INITIAL_FIELDS);
     setFieldErrors({});
     setFormError('');
@@ -135,9 +148,8 @@ export default function AssessmentForm({ idPrefix = 'af' }: AssessmentFormProps)
   }
 
   function handleBookingClick() {
-    if (typeof window !== 'undefined' && typeof window.fbq === 'function') {
-      window.fbq('track', 'Lead');
-    }
+    trackMetaLead('pipeline_diagnostic_booking_click');
+
     window.open(CALENDLY_URL, '_blank', 'noopener,noreferrer');
     setBookingClicked(true);
   }
@@ -146,7 +158,9 @@ export default function AssessmentForm({ idPrefix = 'af' }: AssessmentFormProps)
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) {
     const { name, value } = e.target;
+
     setFields((prev) => ({ ...prev, [name]: value }));
+
     // Clear the error for this field as the user types
     if (fieldErrors[name as keyof FieldErrors]) {
       setFieldErrors((prev) => ({ ...prev, [name]: undefined }));
@@ -158,6 +172,7 @@ export default function AssessmentForm({ idPrefix = 'af' }: AssessmentFormProps)
     setFormError('');
 
     const errors = validateClient(fields);
+
     if (Object.keys(errors).length > 0) {
       setFieldErrors(errors);
       return;
@@ -176,6 +191,7 @@ export default function AssessmentForm({ idPrefix = 'af' }: AssessmentFormProps)
 
       if (!res.ok || !data.ok) {
         const serverErrors: FieldErrors = {};
+
         if (Array.isArray(data.errors)) {
           for (const err of data.errors) {
             if (err.field && err.field !== 'form') {
@@ -187,6 +203,7 @@ export default function AssessmentForm({ idPrefix = 'af' }: AssessmentFormProps)
         } else {
           setFormError('Something went wrong. Please try again.');
         }
+
         setFieldErrors(serverErrors);
         setStatus('error');
         return;
@@ -206,6 +223,8 @@ export default function AssessmentForm({ idPrefix = 'af' }: AssessmentFormProps)
         });
       }
 
+      trackMetaLead('pipeline_diagnostic_form_submit');
+
       setStatus('success');
     } catch {
       setFormError('Could not reach the server. Please check your connection.');
@@ -224,9 +243,11 @@ export default function AssessmentForm({ idPrefix = 'af' }: AssessmentFormProps)
         </div>
 
         <span className={styles.successEyebrow}>Information received</span>
+
         <h3 className={styles.successHeading}>
           We&rsquo;ve got your details.
         </h3>
+
         <p className={styles.successBody}>
           Your Pipeline Diagnostic request has been logged. The next step is
           picking a time — we&rsquo;ll review your pipeline before the call so
@@ -274,7 +295,9 @@ export default function AssessmentForm({ idPrefix = 'af' }: AssessmentFormProps)
     >
       {/* Step microcopy */}
       <div className={styles.stepTrack} aria-hidden="true">
-        <span className={`${styles.stepDone} ${styles.stepActive}`}>Step 1 — Tell us about your pipeline</span>
+        <span className={`${styles.stepDone} ${styles.stepActive}`}>
+          Step 1 — Tell us about your pipeline
+        </span>
         <span className={styles.stepSeparator}>→</span>
         <span className={styles.stepUpcoming}>Step 2 — Book your diagnostic</span>
       </div>
