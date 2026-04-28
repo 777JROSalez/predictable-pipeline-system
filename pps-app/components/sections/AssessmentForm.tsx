@@ -4,6 +4,12 @@ import { useState, useEffect, FormEvent } from 'react';
 import styles from '@/styles/modules/AssessmentForm.module.css';
 import { CALENDLY_DIAGNOSTIC_URL } from '@/lib/config';
 
+declare global {
+  interface Window {
+    gtag?: (...args: unknown[]) => void;
+  }
+}
+
 const CALENDLY_URL = CALENDLY_DIAGNOSTIC_URL;
 
 /**
@@ -191,6 +197,15 @@ export default function AssessmentForm({ idPrefix = 'af' }: AssessmentFormProps)
       } catch {
         // sessionStorage unavailable — proceed without persisting
       }
+
+      if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+        window.gtag('event', 'generate_lead', {
+          event_category: 'engagement',
+          event_label: 'pipeline_diagnostic_form',
+          value: 1,
+        });
+      }
+
       setStatus('success');
     } catch {
       setFormError('Could not reach the server. Please check your connection.');
