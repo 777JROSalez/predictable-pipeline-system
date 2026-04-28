@@ -2,9 +2,9 @@
 
 import { useState, useEffect, FormEvent } from 'react';
 import styles from '@/styles/modules/AssessmentForm.module.css';
+import { CALENDLY_DIAGNOSTIC_URL } from '@/lib/config';
 
-const CALENDLY_URL =
-  'https://calendly.com/tylertejral/diagnostic-45-minute-revenue-gap-audit';
+const CALENDLY_URL = CALENDLY_DIAGNOSTIC_URL;
 
 /**
  * sessionStorage key used to persist the submitted state across back-navigation.
@@ -129,6 +129,9 @@ export default function AssessmentForm({ idPrefix = 'af' }: AssessmentFormProps)
   }
 
   function handleBookingClick() {
+    if (typeof window !== 'undefined' && typeof window.fbq === 'function') {
+      window.fbq('track', 'Lead');
+    }
     window.open(CALENDLY_URL, '_blank', 'noopener,noreferrer');
     setBookingClicked(true);
   }

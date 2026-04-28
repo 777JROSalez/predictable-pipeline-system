@@ -46,11 +46,9 @@ export default function Hero() {
           {/* CTA row: primary + secondary */}
           <div className={`hero-entry hero-entry--delay-4 ${styles.ctaRow}`}>
             <a
-              href="https://calendly.com/tylertejral/diagnostic-45-minute-revenue-gap-audit"
+              href="/diagnostic"
               className="cta-primary"
               id="hero-primary-cta"
-              target="_blank"
-              rel="noopener noreferrer"
             >
               Book a Pipeline Diagnostic
             </a>

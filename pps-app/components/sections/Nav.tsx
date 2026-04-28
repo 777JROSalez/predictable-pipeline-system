@@ -61,11 +61,9 @@ export default function Nav() {
         {/* Right group: CTA + hamburger */}
         <div className={styles.navActions}>
           <a
-            href="https://calendly.com/tylertejral/diagnostic-45-minute-revenue-gap-audit"
+            href="/diagnostic"
             className={`cta-primary ${styles.navCta}`}
             id="nav-cta"
-            target="_blank"
-            rel="noopener noreferrer"
           >
             Book a Pipeline Diagnostic
           </a>
@@ -103,11 +101,9 @@ export default function Nav() {
             ))}
             <li className={styles.mobileLinkItem}>
               <a
-                href="https://calendly.com/tylertejral/diagnostic-45-minute-revenue-gap-audit"
+                href="/diagnostic"
                 className={`cta-primary ${styles.mobileCta}`}
                 onClick={handleNavLinkClick}
-                target="_blank"
-                rel="noopener noreferrer"
               >
                 Book a Pipeline Diagnostic
               </a>

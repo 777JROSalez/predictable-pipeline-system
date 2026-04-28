@@ -1,0 +1,227 @@
+/* ============================================================
+   Diagnostic — Pipeline Leak Diagnostic pre-frame page.
+   All sections: Hero, LeakPoints, WhatYouLeaveWith, FormBlock.
+   ============================================================ */
+
+/* ─── Hero ─────────────────────────────────────────────────── */
+
+.hero {
+  padding-top: var(--space-20);
+  padding-bottom: var(--space-20);
+}
+
+.heroContent {
+  max-width: 720px;
+}
+
+.heroEyebrow {
+  color: var(--color-oxblood);
+}
+
+.heroHeadline {
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  font-weight: 700;
+  color: var(--color-charcoal);
+  line-height: 1.1;
+  margin-top: var(--space-4);
+  font-feature-settings: "liga" 1, "onum" 1;
+}
+
+.heroSubheadline {
+  font-family: var(--font-body);
+  font-size: var(--text-md);
+  color: var(--color-steel);
+  line-height: 1.7;
+  max-width: 60ch;
+  margin-top: var(--space-6);
+}
+
+.ctaRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  margin-top: var(--space-8);
+}
+
+.heroSupport {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--color-smoke);
+  line-height: 1.65;
+  max-width: 56ch;
+  margin-top: var(--space-6);
+}
+
+@media (min-width: 768px) {
+  .heroHeadline {
+    font-size: var(--text-4xl);
+  }
+}
+
+/* ─── Leak Points ───────────────────────────────────────────── */
+
+.leakPoints {
+  padding: var(--space-24) 0;
+}
+
+.sectionHeader {
+  margin-bottom: var(--space-12);
+}
+
+.sectionHeadline {
+  margin-top: var(--space-3);
+  max-width: 28ch;
+}
+
+.leakGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+}
+
+.leakCard {
+  background-color: #ffffff;
+  border: 1px solid var(--color-rule);
+  border-radius: 3px;
+  padding: var(--space-8);
+  transition: border-color 200ms ease;
+}
+
+.leakCard:hover {
+  border-color: var(--color-copper);
+}
+
+.leakMark {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--color-oxblood);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-4);
+}
+
+.leakTitle {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--color-charcoal);
+  line-height: 1.2;
+  margin-bottom: var(--space-4);
+}
+
+.leakBody {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--color-steel);
+  line-height: 1.65;
+}
+
+@media (min-width: 768px) {
+  .leakGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ─── What You Leave With ───────────────────────────────────── */
+
+.leaveWith {
+  padding: var(--space-24) 0;
+}
+
+.leaveWithInner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-12);
+  align-items: start;
+}
+
+.leaveWithContent {
+  max-width: 600px;
+}
+
+.bulletList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin-top: var(--space-8);
+  list-style: none;
+  padding: 0;
+}
+
+.bulletItem {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--color-steel);
+  line-height: 1.55;
+}
+
+.bulletMark {
+  font-family: var(--font-mono);
+  color: var(--color-copper);
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+.leaveWithCta {
+  margin-top: var(--space-10);
+}
+
+@media (min-width: 1024px) {
+  .leaveWithInner {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+    gap: var(--space-20);
+  }
+}
+
+/* ─── Form Block ────────────────────────────────────────────── */
+
+.formBlock {
+  padding: var(--space-24) 0;
+}
+
+.formInner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-12);
+  align-items: start;
+}
+
+.formContent {
+  max-width: 480px;
+}
+
+.formHeadline {
+  margin-top: var(--space-3);
+  color: var(--color-canvas);
+  max-width: 22ch;
+}
+
+.formDesc {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--color-panel-text);
+  line-height: 1.65;
+  max-width: 48ch;
+  margin-top: var(--space-5);
+}
+
+.formPanel {
+  background-color: var(--color-panel-bg);
+  border: 1px solid var(--color-panel-border);
+  border-radius: 3px;
+  padding: var(--space-8);
+}
+
+@media (min-width: 1024px) {
+  .formInner {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: var(--space-16);
+  }
+}
