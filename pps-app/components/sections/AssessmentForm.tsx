@@ -3,11 +3,11 @@
 import { useState, useEffect, FormEvent } from 'react';
 import styles from '@/styles/modules/AssessmentForm.module.css';
 import { CALENDLY_DIAGNOSTIC_URL } from '@/lib/config';
-import { trackMetaLead } from '@/lib/metaPixel';
 
 declare global {
   interface Window {
     gtag?: (...args: unknown[]) => void;
+    fbq?: (...args: any[]) => void;
   }
 }
 
@@ -69,11 +69,13 @@ function validateClient(fields: FormFields): FieldErrors {
 
   if (!fields.name.trim()) errors.name = 'Name is required.';
   if (!fields.company.trim()) errors.company = 'Company is required.';
+
   if (!fields.email.trim()) {
     errors.email = 'Email is required.';
   } else if (!EMAIL_REGEX.test(fields.email.trim())) {
     errors.email = 'Enter a valid email address.';
   }
+
   if (!fields.message.trim()) errors.message = 'Message is required.';
 
   return errors;
@@ -147,8 +149,14 @@ export default function AssessmentForm({ idPrefix = 'af' }: AssessmentFormProps)
     setStatus('idle');
   }
 
+  function fireMetaLeadEvent() {
+    if (typeof window !== 'undefined' && typeof window.fbq === 'function') {
+      window.fbq('track', 'Lead');
+    }
+  }
+
   function handleBookingClick() {
-    trackMetaLead('pipeline_diagnostic_booking_click');
+    fireMetaLeadEvent();
 
     window.open(CALENDLY_URL, '_blank', 'noopener,noreferrer');
     setBookingClicked(true);
@@ -223,7 +231,7 @@ export default function AssessmentForm({ idPrefix = 'af' }: AssessmentFormProps)
         });
       }
 
-      trackMetaLead('pipeline_diagnostic_form_submit');
+      fireMetaLeadEvent();
 
       setStatus('success');
     } catch {
@@ -321,7 +329,11 @@ export default function AssessmentForm({ idPrefix = 'af' }: AssessmentFormProps)
           disabled={status === 'submitting'}
         />
         {fieldErrors.name && (
-          <span id={`${idPrefix}-name-error`} className={styles.fieldError} role="alert">
+          <span
+            id={`${idPrefix}-name-error`}
+            className={styles.fieldError}
+            role="alert"
+          >
             {fieldErrors.name}
           </span>
         )}
@@ -346,7 +358,11 @@ export default function AssessmentForm({ idPrefix = 'af' }: AssessmentFormProps)
           disabled={status === 'submitting'}
         />
         {fieldErrors.company && (
-          <span id={`${idPrefix}-company-error`} className={styles.fieldError} role="alert">
+          <span
+            id={`${idPrefix}-company-error`}
+            className={styles.fieldError}
+            role="alert"
+          >
             {fieldErrors.company}
           </span>
         )}
@@ -371,7 +387,11 @@ export default function AssessmentForm({ idPrefix = 'af' }: AssessmentFormProps)
           disabled={status === 'submitting'}
         />
         {fieldErrors.email && (
-          <span id={`${idPrefix}-email-error`} className={styles.fieldError} role="alert">
+          <span
+            id={`${idPrefix}-email-error`}
+            className={styles.fieldError}
+            role="alert"
+          >
             {fieldErrors.email}
           </span>
         )}
@@ -394,7 +414,11 @@ export default function AssessmentForm({ idPrefix = 'af' }: AssessmentFormProps)
           disabled={status === 'submitting'}
         />
         {fieldErrors.message && (
-          <span id={`${idPrefix}-message-error`} className={styles.fieldError} role="alert">
+          <span
+            id={`${idPrefix}-message-error`}
+            className={styles.fieldError}
+            role="alert"
+          >
             {fieldErrors.message}
           </span>
         )}
